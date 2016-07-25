@@ -15,7 +15,7 @@ timezone: Europe/Istanbul
 paginateLabel: page
 paginate_path: "page/:num"
 permalink: /:categories/:year/:month/:day/:title
-baseurl: /
+baseurl: 
 domain_name: 'https://quality520.github.io/'
 google_analytics: 'UA-XXXXXXXX-X'
 
@@ -43,3 +43,4 @@ sitemap:
         - "/index.html"
     change_frequency_name: "daily"
     priority_name: "1.00"
+
