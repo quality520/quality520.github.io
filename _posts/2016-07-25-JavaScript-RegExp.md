@@ -150,13 +150,13 @@ var text = 'mom and dad and baby';
 var pattern = /mom( and dad( and baby)?)?/gi;
 var matches = pattern.exec(text);
 console.log(matches);
-//[
+/* [
 	"mom and dad and baby", 
 	" and dad and baby", 
 	" and baby", 
 	index: 0, 
 	input: "mom and dad and baby"
-]
+] */
 ```
 
 ##### test方法
@@ -176,9 +176,9 @@ if(pattern.test(text)){
 ```
 var pattern = new RegExp('\\[bc\\]at','gi');
 console.log(pattern.toLocaleString());
-// /\[bc\]/gi
+/* /\[bc\]/gi */
 console.log(pattern.toLocaleString();
-// /\[bc\]/gi
+/* /\[bc\]/gi */
 ```
 
 即使上例中的模式是通过调用RegExp构造函数创建的，但toLocaleString()和toString()方法仍然会像它是以字面量形式创建的
@@ -186,4 +186,31 @@ console.log(pattern.toLocaleString();
 *tips:正则表达式的valueOf()方法返回正则表达式本身*
 
 #### RegExp构造函数属性
-RegExp构造函数包含一些属性，这些属性适用于作用域中
+
+RegExp构造函数包含一些属性，这些属性适用于作用域中，这些属性适用于作用
+域中的所有正则表达式，并且基于所执行的最近一次正则表达式操作而变化。
+
+|     长属性名     |   短属性名 |  说明  |
+| :-------: | :-------:| :-------: |
+| input | $_ | 最近一次要匹配的字符串，Opaera为实现此属性 |
+| lastMatch | $& | 最近一次要匹配项，Opaera为实现此属性 |
+| lastParen | $+ | 最近一次要匹配捕获组，Opaera为实现此属性 |
+| leftContext | $` | input字符串中lastMatch之前的文本 |
+| multiline | $* | 布尔值，表示是否所有表达式都使用多行模式，IE和Opera未实现此属性 |
+| rightContext | $' | Input字符串中lastMatch之后的文本 |
+
+使用这些属性可以从exec()和test()执行的操作中提取出更具体的信息。
+
+```
+    var text = 'this has been a short summer',
+        pattern = /(.)hort/g;
+
+    if(pattern.test(text)){
+        alert(RegExp.input); // this has been a short summer
+        alert(RegExp.leftContext); // this has been a
+        alert(RegExp.rightContext); // summer
+        alert(RegExp.lastMatch); // short
+        alert(RegExp.lastParen); // s
+        alert(RegExp.multiline); // false
+    }
+```
