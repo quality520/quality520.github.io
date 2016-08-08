@@ -3,7 +3,7 @@ layout: post
 title: Function类型
 categories: [general, demo, sample]
 tags: [javaScript, No.10, function, blogs]
-fullview: true
+fullview: false
 ---
 
 <!-- ## {{ page.title }} -->
