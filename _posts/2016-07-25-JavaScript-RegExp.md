@@ -3,6 +3,8 @@ layout: post
 title: RegExp类型
 categories: [general, demo, sample]
 tags: [javaScript, No.10, regexp, blogs]
+description:
+fullview: true
 ---
 <!-- ## {{ page.title }} -->
 {{ page.date | date_to_string }}  
