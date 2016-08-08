@@ -1,46 +1,40 @@
-# Website details
-name: "No.10"
-description: "No.10的blogs"
-email: "silencly520@163.com"
-author: "10th"
-lang: ""
-locale: ""
+# visit https://github.com/mojombo/jekyll/wiki/Configuration for more settings
 
-# Jekyll
-paginate: 10
-highlighter: ""
+paginate: 10 # pagination based on number of posts
+paginate_path: "page:num"
+exclude: ["README.md"] # files to exclude
+highlighter: pygments
 markdown: kramdown
-gems: [jekyll-paginate]
-timezone: Europe/Istanbul
-paginateLabel: page
-paginate_path: "page/:num"
-permalink: /:categories/:year/:month/:day/:title
-baseurl: 
-domain_name: 'https://quality520.github.io/'
-google_analytics: 'UA-XXXXXXXX-X'
+disqus: dbyll
+google_analytics: dbyll
+title: dbyll
 
-# Includes
-addthisId: ""
-disqusUsername: ""
-googleAnalyticsId: ""
+defaults:
+  -
+    scope:
+      path: "" # empty string for all files
+    values:
+      title: dbyll
 
-# Details for the RSS feed generator
-# url:            '/rss.xml'
-url:            'blog url'
-author:         '10th'
+description: Stylish Jekyll Theme
+author:
+  name: dbyll
+  email: dbyll@ismaildemirbilek.com
+  github: dbtek
+  twitter: dbtek
+  pinterest: asd123
+  linkedin: asd123
+  bio: Your stylish, minimalist theme!
+  email_md5: 726351295ec82e145928582f595aa3aa
 
-# Search engine verifications
-bing: ""
-yandex: ""
-google: ""
+rss_path: feed.xml
+categories_path: categories.html
+tags_path: tags.html
 
-#Sitemap
-sitemap:
-    file: "/sitemap.xml"
-    exclude:
-        - "/404.html"
-    include_posts:
-        - "/index.html"
-    change_frequency_name: "daily"
-    priority_name: "1.00"
+# set it as url of an image
+# sidebar_background_image: https://www.dropbox.com/s/g9h23zrycedxtk5/sky.png?raw=1
 
+BASE_PATH:
+
+gems:
+  - jekyll-paginate

@@ -1,73 +1,74 @@
 ---
-layout: default
+layout: page
+tagline:
 ---
 
-<!-- Don't show pagination bar in homepage -->
-{% if paginator.page > 1 %}
-
-	<!-- Include pagination bar -->
-	{% include pagination.html section="top" %}
-
-{% endif %}
-
-<!-- Loop for posts by paginator -->
 {% for post in paginator.posts %}
 
-	<!-- Article -->
-	<article>
+<article class="home">
 
-		<!-- Article title -->
-		<a href="{{ site.baseurl }}{{ post.url }}" class="h1">{{ post.title }}</a>
+  <span class="post-date">
+    {% assign d = post.date | date: "%d" | plus:'0' %}
+    {{ post.date | date: "%B" }}
+    {% case d %}
+    {% when 1 or 21 or 31 %}{{ d }}st,
+    {% when 2 or 22 %}{{ d }}nd,
+    {% when 3 or 23 %}{{ d }}rd,
+    {% else %}{{ d }}th,
+    {% endcase %}
+    {{ post.date | date: "%Y" }}
+  </span>
 
-			<!-- If article has a cover photo -->
-			{% if post.coverPhoto %}
+  <h2>
+    <a href="{{ site.BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
+  </h2>
 
-				<!-- Article image with aspect ratio -->
-				<a href="{{ site.baseurl }}{{ post.url }}" class="ar-container">
-					<span class="ar-content" style="background-image: url({{ post.coverPhoto }});"></span>
-				</a><!-- .ar-container -->
+  <div>
+    {% if post.fullview %}
+    {{ post.content }}
+    {% else %}
+    {% if post.shortinfo %}
+    {{ post.shortinfo }}
+    {% elsif post.description %}
+    {{ post.description }}
+    {% else %}
+    {{ post.excerpt }}
+    {% endif %}
+    {% endif %}
+  </div>
 
-			{% endif %}
-
-		<!-- Article pre description -->
-		<section class="max-height">{{ post.content | strip_html | slice: 0, 200 }}</section>
-
-		<!-- Article date & article continue reading button container -->
-		<div class="article__bottom">
-
-			<!-- Article date -->
-			<span class="article__date">
-				{% if site.lang == "tr" %}
-					{% assign m = post.date | date: "%-m" %}
-					{{ post.date | date: "%-d" }} 
-					{% case m %}
-						{% when "1" %}OCAK 
-						{% when "2" %}ŞUBAT 
-						{% when "3" %}MART 
-						{% when "4" %}NİSAN 
-						{% when "5" %}MAYIS 
-						{% when "6" %}HAZİRAN 
-						{% when "7" %}TEMMUZ 
-						{% when "8" %}AĞUSTOS 
-						{% when "9" %}EYLÜL 
-						{% when "10" %}EKİM 
-						{% when "11" %}KASIM 
-						{% when "12" %}ARALIK 
-					{% endcase %}
-					{{ post.date | date: "%Y" }}
-				{% else %}
-					{{ post.date | date_to_long_string | upcase }}
-				{% endif %}
-			</span>
-
-			<!-- Article continue reading button -->
-			<a class="article__button" href="{{ site.baseurl }}{{ post.url }}">{% if site.lang == "tr" %}DEVAMINI OKU{% else %}CONTINUE READING{% endif %}</a>
-
-		</div><!-- .article__bottom -->
-
-	</article><!-- article -->
-
+</article>
 {% endfor %}
+<hr/>
 
-<!-- Include pagination bar -->
-{% include pagination.html section="bottom" %}
+<ul class="pager"> 
+
+  {% if paginator.previous_page %}
+  <li class="previous">
+    {% if paginator.previous_page == 1 %}
+    <a href="{{ site.BASE_PATH }}/">&larr; Newer</a>
+    {% else %}
+    <a href="{{ site.BASE_PATH }}/{{ site.paginate_path | replace: ':num', paginator.previous_page }}">&larr; Newer</a>
+    {% endif %}
+  </li>
+  {% else %}
+  <li class="previous disabled">
+    <a>&larr; Newer</a>
+  </li>
+  {% endif %}
+  
+  <li>
+    <span class="page_number">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  </li>
+
+  {% if paginator.next_page %}
+  <li class="next">
+    <a href="{{ site.BASE_PATH }}/{{ site.paginate_path | replace: ':num', paginator.next_page }}">Older &rarr;</a>
+  </li>
+  {% else %}
+  <li class="next disabled">
+    <a>Older &rarr;</a>        
+  </li>
+  {% endif %}
+
+</ul>
