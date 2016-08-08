@@ -7,7 +7,7 @@ description:
 <!-- fullview: false -->
 ---
 <!-- ## {{ page.title }} -->
-{{ page.date | date_to_string }}  
+<!-- {{ page.date | date_to_string }}   -->
 ECMAScript通过RegExp类型来支持正则表达式。使用下面类似Perl的语法，就可以创建一个正则表达式
 
 ```javascript
