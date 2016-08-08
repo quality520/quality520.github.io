@@ -17,15 +17,15 @@ defaults:
       title: 那个10号
 
 description: Stylish Jekyll Theme
-  author: No.10
-  name: No.10
-  email: silencly520@163.com
-  github: quality520
-  twitter: white_quality
-  pinterest: asd123
-  linkedin: asd123
-  bio: small newbie
-  email_md5: 
+author: No.10
+name: No.10
+email: silencly520@163.com
+github: quality520
+twitter: white_quality
+pinterest: asd123
+linkedin: asd123
+bio: small newbie
+email_md5: 
 
 rss_path: feed.xml
 categories_path: categories.html
