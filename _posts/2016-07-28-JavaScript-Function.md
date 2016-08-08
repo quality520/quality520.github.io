@@ -5,7 +5,7 @@ categories: [general, demo, sample]
 tags: [javaScript, No.10, function, blogs]
 ---
 
-## {{ page.title }}
+<!-- ## {{ page.title }} -->
 {{ page.date | date_to_string }}
 > 函数实际上是对象。每个函数都是Function类型的实例，而且都与其他引用类
 > 型一样具有属性和方法。由于函数是对象，因此函数名实际上也是一个指向函
@@ -97,4 +97,25 @@ tags: [javaScript, No.10, function, blogs]
 ```
 
     上述代码执行之前，解析器就已经开始同一个名为函数声明提升（function declaration hoisting）的过程，读取并将函数声明添加到执行环境中。
-    
+    对代码求值时，JavaScript引擎在第一遍会声明函数并将它们放到源代码树的顶部。
+    所以，即使声明函数的代码在调用它的代码后面，JavaScript引擎也能把函数声明提升到顶部。
+```javascript
+    console.log(sum(10, 20));
+    var sum = function(num1, num2){
+        return num1 + num2;
+    }
+```
+    上述代码会报错，原因在与函数位于一个初始化语句中，而不是一个函数声明。换句
+    话说，在执行到函数所在的语句之前，变量sum中不会保存有对函数的引用；而且，由于第一行代码就会导致“unexpected identifier”（意外标识符）错误，实际上也不会
+    执行到下一行。
+    除了什么时候可以通过变量访问函数这一点却别之外，函数声明与函数表达式的语法其实是等价的。
+
+#### 作为值的函数
+    ECMAScript中的函数本身就是变量，所以函数也可以作为值来使用。
+    可以像参数一样吧一个函数传递给另一个函数，而且还可以将一个函数作为另一个函数的结果返回。
+```javascript
+    function callSomeFunction(someFunction, someArgument){
+        return someFunction(someArgument);
+    }
+```
+

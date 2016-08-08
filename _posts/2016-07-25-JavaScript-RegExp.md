@@ -1,8 +1,10 @@
 ---
-layout: default
+layout: post
 title: RegExp类型
+categories: [general, demo, sample]
+tags: [javaScript, No.10, regexp, blogs]
 ---
-## {{ page.title }}
+<!-- ## {{ page.title }} -->
 {{ page.date | date_to_string }}  
 ECMAScript通过RegExp类型来支持正则表达式。使用下面类似Perl的语法，就可以创建一个正则表达式
 
