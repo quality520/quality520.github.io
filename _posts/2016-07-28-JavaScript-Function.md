@@ -71,12 +71,28 @@ title: Function类型
 > 上述声明了两个同名函数，而结果则是后面的函数覆盖了前面的函数。
 > 以上代码其实跟下面的代码没有声明区别
 
-```
+```javascript
     var addSomeNumber = function(num){
         return num + 100;
-    }
+    };
     addSomeNumber = function(mum){
         return num + 200;
-    }
+    };
     var result = addSomeNumber(100); //300
 ```
+
+> 上述代码是怎么回事？在创建第二个函数时，实际上覆盖了引用第一个函数的变量addSomeNumber
+
+#### 函数声明与函数表达式
+> 解析器在向执行环境中加载数据时，会率先读取函数声明，并使其在执行任何代码之前可用；
+> 至于函数表达式，则必须等到解析器执行到所在的代码行，才会真正被解析执行。
+
+```javascript
+    console.log(sum(10, 10));  //=>20;
+    function sum(num1, num2){
+        return num1 + num2;
+    }
+```
+
+    上述代码执行之前，解析器就已经开始同一个名为函数声明提升（function declaration hoisting）的过程，读取并将函数声明添加到执行环境中。
+    
