@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: post
 title: Function类型
+categories: [general, demo, sample]
+tags: [javaScript, No.10, function, blogs]
+description: Sample placeholder post.
 ---
 
 ## {{ page.title }}
