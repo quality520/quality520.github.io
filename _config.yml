@@ -14,9 +14,9 @@ defaults:
     scope:
       path: "" # empty string for all files
     values:
-      title: 那个10号
+      title: No.10
 
-description: Stylish Jekyll Theme
+description: hello No.10
   author:
   name: No.10
   email: silencly520@163.com
