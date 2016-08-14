@@ -289,6 +289,8 @@ tags: [javaScript, No.10, function, blogs]
 
 > prototype属性：prototype是保存他们所有实例方法的真正所在。换句话说，诸如toString()和valueOf()等方法世界上都保存在prototype名下，只不过是通过各自对象的实例访问罢了。在创建爱你自定义引用类型以及实现继承时，prototype属性的作用是极为重要的。在ECMAScript5中，prototype属性是不可枚举的，因此使用for-in无法发下。
 
+##### apply,call
+
 > 每个函数都包含两个非继承而来的方法：apply()和call()。这两个方法的用途都是在特定的作用域中调用函数，世界上等于设置函数体内this对象的值。首先， 
 
 > apply()方法接受两个参数：一个是在其中运行函数的作用域，另一个是参数数组。其中，第二个参数可以是Array实例，也可以是arguments对象
@@ -335,5 +337,18 @@ tags: [javaScript, No.10, function, blogs]
         console.log(this.color);
     }
     sayColor(); //=>'red' 
-
+    sayColor.call(this);  //=> 'red'
+    sayColor.call(window);  //=> 'red'
+    sayColor.call(o);  //=>'blue'
 ```
+
+> sayColor.call(o)，函数的执行环境发生了变化，此时函数体内的this指向了o，于是结果显示为“blue”
+    
+> 使用call()（或者apply()）方法来扩充作用于最大的好处，就是对象不需要与方法有任何耦合关系。
+
+##### bind()
+> ECMAScript5 定义了bind()方法，该方法会创建一个函数的实例，其this值会被绑定到传给bind()函数的值。
+
+```javascript
+    
+``` 
