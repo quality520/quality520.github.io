@@ -310,4 +310,30 @@ tags: [javaScript, No.10, function, blogs]
 > callSum1()在执行sum()函数时传入了this作为this值(因为是全局作用域中调用，所以传入的就是window对象)和arguments对象。而callSum2()同样也调用了sum()函数，传入的是this和一个参数数组，这两个函数都会正常执行并返回正确的结果。
 > **在严格模式下，为指定环境对象而调用函数，则this值不会转型为window。除非明确把函数添加到某个对象或者调用apply()或call()，否则this值将是undefined。**
 
->
+> call()和apply()方法的作用相同，他们的区别仅在于接收参数的方式不同。对于call()方法而言，第一个参数是this值没有变化，变化的是其余参数都直接传递给函数。
+
+```javascript
+    function sum(num1, num2){
+        return num1 + num2;
+    }
+    function callSum(num1, num2){
+        sum.call(this, num1, num2);
+    }
+    callSum(10, 20); //=>30
+```
+
+> 在使用call()方法的情况下，callSum()必须明确传入每一个参数。结果于使用apply()没有什么不同。
+   
+
+> 传递参数并非apply()和call()真正的用武之地；它们真正强大的地方是能够扩充函数赖以运行的作用于。
+
+```javascript
+    window.color = 'red';
+    var o = {color : 'blue'};
+
+    function sayColor(){
+        console.log(this.color);
+    }
+    sayColor(); //=>'red' 
+
+```
