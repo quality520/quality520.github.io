@@ -350,5 +350,17 @@ tags: [javaScript, No.10, function, blogs]
 > ECMAScript5 定义了bind()方法，该方法会创建一个函数的实例，其this值会被绑定到传给bind()函数的值。
 
 ```javascript
-    
-``` 
+    window.color = 'red';
+    var o = {color : 'blue'};
+    function sayColor(){
+        console.log(this.color);
+    }
+    var objectSayColor = sayColor.bind(o);
+
+    sayColor(); //=>'red'
+    objectSayColor(); //=>'blue'
+```
+
+> sayColor()调用bind()并传入对象o，创建了objectSayColor()函数。objectSayColor()函数的this值等于o，因此即使是在全局作用域中调用这个函数，也会得到'blue'.
+
+> toLocalString(),localString(),valueOf()
