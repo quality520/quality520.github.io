@@ -40,4 +40,4 @@ tags: [javaScript, No.10, 基本包装类型, blogs]
     console.log(s1,s1.color); //hello world undefined
 ```
 
-> 上述例子中，第二行代码试图给s1添加一个color属性，当第三行代码再次访问s1时，其color属性不见了。问题的原因就是第二行创建的String对象在执行第三行代码时已经被销毁了。第三行代码又创建自己的String对象，而该对象没有color对象。
+> 上述例子中，第二行代码试图给s1添加一个color属性，当第三行代码再次访问s1时，其color属性不见了。问题的原因就是第二行创建的String对象在执行第三行代码时已经被销毁了。第三行代码又创建自己的String对象，而该对象没有color属性。
