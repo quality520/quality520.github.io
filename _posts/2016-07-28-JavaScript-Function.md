@@ -365,7 +365,7 @@ tags: [javaScript, No.10, function, blogs]
 
 > toLocalString(),localString(),valueOf()方法
 
-{% highlight javascript %}
+<!-- {% highlight javascript %}
     window.color = 'red';
     var o = {color : 'blue'};
     function sayColor(){
@@ -375,4 +375,4 @@ tags: [javaScript, No.10, function, blogs]
 
     sayColor(); //=>'red'
     objectSayColor(); //=>'blue'
-{% endhighlight %}
+{% endhighlight %} -->
