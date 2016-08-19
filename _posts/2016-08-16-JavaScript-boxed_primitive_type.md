@@ -129,3 +129,10 @@ tags: [javaScript, No.10, 基本包装类型, blogs]
     var num = 10;
     console.log(num.toFixed(2)); //10.10
 ```
+
+> 给toFixed()方法传入数值2，意思就是显示几位小数，于是，上述结果返回"10.00"，即已0填补必要的小数位。如果数值本身包含的小数位比指定的还多，name接近指定的最大小数位的值就会舍入。
+
+```javascript
+    var num = 10.005;
+    console.log(num.toFixed(2)); //10.01
+```
