@@ -122,6 +122,8 @@ tags: [javaScript, No.10, 基本包装类型, blogs]
     console.log(num.toString(16));  //a
 ```
 
+###### toFixed()
+
 > 除了继承的方法之外，Number类型还提供了一些用于将数值格式化为字符串的方法。
 > 其中，toFixed()方法会按照指定的小数位返回数值的字符串表示
 
@@ -136,3 +138,94 @@ tags: [javaScript, No.10, 基本包装类型, blogs]
     var num = 10.005;
     console.log(num.toFixed(2)); //10.01
 ```
+
+> 能够自动舍入的特性，是的toFixed()方法很适合处理货币值。但需要注意的是，不同浏览器给这个方法设定的舍入规则坑内会有所不同。在给toFixed()传入0的情况下，IE8及之前版本不能正确舍入范围在{(-0.94,-0.5)],[0.5,0.94)}之间的值。对于这个范围内的值，IE会返回0，而不是-1或1；其他浏览器都能返回正确的值。
+
+> # tips：
+>   toFixed()方法可以表示带有0到20个小数位的数值。但这只是标准实现的范围，有些浏览器也可能支持更多位数。
+
+###### toExponential()
+> toExponential()方法用于格式化数值，该方法返回以指数表示法(也称e表示法)表示的数值的字符串形式。与toFixed()一样，toExponential()也接受一个参数，而且该参数同样也是指定输出结果中的小数位数。
+
+```javascript
+    var num = 100;
+    console.log(num.toExponential(1)); //1.0e+2
+```
+
+###### toPrecision()
+> toPrecision()方法可能会返回固定大小(fixed)格式，也可能返回指数(exponential)格式；
+> 参数：这个方法接收一个参数，即表示数值的所有数字的位数(不包括指数部分)。
+
+```javascript
+    var num = 99;
+    console.log(num.toPrecision(1));    //1e+2
+    console.log(num.toPrecision(2));    //99
+    console.log(num.toPrecision(3));    //99.0
+```
+
+> 第二行代码完成的任务是以一位数来表示99，结果是“1e+2”,即100，因为一位数无法准确的表示99，因此toPrecision()就将它向上舍入为100，这样就可以使用一位数来表示它了。
+> toPrecision()会根据要处理的数值决定到底是调用toFixed()还是调用toExponential()。而这三个方法都可以通过向上或向下舍入，做到以最准确的形式来表示带有正确小数位的值。
+
+```javascript
+    var numberObject = new Number(10);
+    var number = 10;
+    console.log(typeof numberObject,numberObject instanceof Number);
+    console.log(typeof number,number instanceof Number);
+
+    //object,true
+    //number false
+```
+
+> 在使用typeof操作符测试基本类型数值时，始终返回"number",而在测试Number对象时，则会返回"object".类似的，Number对象是Number类型的实例，而基本类型的数值则不是。
+
+#### String类型
+
+> String类型是字符串的对象包装类型，可以像下面这样使用String构造函数来创建：
+
+```javascript
+    var stringObject = new String("hello world");
+```
+
+> String对象的方法也可以在所有基本的字符串值中访问到。其中，继承的valueOf()、toLocaleString()、toString()方法，都返回对象所表示的基本字符值。
+
+> String类型的每个实例都有一个length属性，表示字符串中包含多个字符。
+
+```javascript
+    var stringValue = "hello world";
+    console.log(stringValue.length);    //11
+    var value = "中国女排加油！";
+    console.log(value.length);  //7
+```
+
+###### 1.字符方法
+
+> 两个用于访问字符串中特定字符的方法是:charAt()和charCodeAt()。这两个方法都接收一个参数，即基于0的字符位置。其中charAt()方法以单字符字符串的形式返回给定位置的那个字符(ECMAScript中没有字符类型)。
+
+```javascript
+    var value = "hello world";
+    console.log(value.charAt(1));   //e
+    console.log(value.charCodeAt(1));   //101
+    console.log(value[1]);   //e
+```
+
+> 字符串"hello world"位置1处的字符是"e",因此调用charAt(1)就返回了"e",
+> 而调用charCodeAt(1),就返回了"e"的字符编码"101".
+> 上述例子第四行代码，表示使用方括号加数字索引来访问字符串中的特定字符(ECMAScript5定义的访问个别字符的方法)。
+
+###### 2.字符串操作方法
+
+- concat(),用于将一个或多个字符串拼接起来，返回拼接得到的新字符串。***不会改变源字符串***
+
+```javascript
+    var value = "hello ";
+    var result = value.concat("world");
+    var value2 = "world ";
+    var value3 = "!";
+    console.log(result);    //"hello world"
+    console.log(value.concat(value2,value3));   //"hello world !";
+    console.log(value); //"hello"
+```
+
+> 虽然concat()是专门用来拼接字符串的方法，但实践中使用更多的还是加号操作符(+)。而且加好操作符大多数情况下都比使用concat()方法要简便易行(特别是在拼接多个字符串的情况下)。
+
+
