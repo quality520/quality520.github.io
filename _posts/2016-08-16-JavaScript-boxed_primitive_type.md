@@ -228,8 +228,16 @@ tags: [javaScript, No.10, 基本包装类型, blogs]
 
 > 虽然concat()是专门用来拼接字符串的方法，但实践中使用更多的还是加号操作符(+)。而且加好操作符大多数情况下都比使用concat()方法要简便易行(特别是在拼接多个字符串的情况下)。
 
-- slice(),
-- substr(),
-- substring()
+- slice()、substr()和substring()这三个方法都会返回被操作字符串的一个子字符串，而且接受一个或两个参数，第一个参数指定了子字符串的开始位置，第二个参数(在指定的情况下)表示子字符串到哪里结束。具体来说，slice()和substring()的第二个参数指定的是字符串最后一个字符后面的位置。而substr()的第二个参数指定的则是返回的字符个数。如果没有给这些方法传递第二个参数，则将字符串的长度作为结束位置。与concat()方法一样，slice()、substr()和substring()也不会修改字符串本身的值----它们只是返回一个基本类型的字符串值，对原始字符串没有任何影响。
+
+```javascript
+    var value = "hello world";
+    console.log(value.slice(3));    //lo world
+    console.log(value.substring(3));    //lo world
+    console.log(value.substr(3));   //lo world
+    console.log(value.slice(3,7));  //lo w
+    console.log(value.substring(3,7)); //lo w
+    console.log(value.substr(3,7)); //第二个参数为返回的字符个数，lo worl
+```
 
 
