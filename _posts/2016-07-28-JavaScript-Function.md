@@ -7,7 +7,7 @@ tags: [javaScript, No.10, function, blogs]
 ---
 
 <!-- ## {{ page.title }} -->
-{{ page.date | date_to_string }}
+<!-- {{ page.date | date_to_string }} -->
 > 函数实际上是对象。每个函数都是Function类型的实例，而且都与其他引用类
 > 型一样具有属性和方法。由于函数是对象，因此函数名实际上也是一个指向函
 > 数对象的指针，不会与某个函数绑定。    
