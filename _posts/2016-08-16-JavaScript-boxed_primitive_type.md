@@ -276,3 +276,17 @@ tags: [javaScript, No.10, 基本包装类型, blogs]
     console.log(value.lastIndexOf("o",6));//4
 ```
 
+> 在使用第二个参数的情况下，可以通过循环调用indexOf()或lastIndexOd()来找到所有匹配的字符串。
+
+```javascript
+    var stringValue = "Lorem ipsum dolor sit amet, consectetur adipisicing elit";
+    var positions = new Array();
+    var pos = stringValue.indexOf("e");
+
+    while(pos > -1){
+        positions.push(pos);
+        pos.stringValue.indexOf("e", pos + 1);
+    }
+    console.log(positions); //3,24,32,35,52
+
+```
