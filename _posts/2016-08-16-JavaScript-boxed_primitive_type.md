@@ -240,4 +240,39 @@ tags: [javaScript, No.10, 基本包装类型, blogs]
     console.log(value.substr(3,7)); //第二个参数为返回的字符个数，lo worl
 ```
 
+> 在传递给这些方法的参数是负数的情况下，它们的行为就不尽相同了。
+> 其中，**slice()**方法会将传入的负值与字符串的长度相加，
+> **substr()**方法将负的第一个参数加上字符串的长度，而将负的第二个参数转换为0，
+> **substring()**方法会把负值参数都转换为0.
+
+```javascript
+    var value = "hello world";
+    console.log(value.slice(-3));   //rld
+    console.log(value.substr(-3));  //rld
+    console.log(value.substring(-3));//hello world
+    console.log(value.slice(3,-4)); //lo w
+    console.log(value.substr(3,-4));//""
+    console.log(value.substring(3,-4));//hel
+```
+
+> 在给slice()和substr()传递一个负值参数时，它们的行为相同。因为-3会被转换为8(字符串长度加参数11+(-3)=8),实际上相当于调用了slice(8)和substr(8)。但substring()方法则返回了全部字符串，因为它将-3转换为0了。
+> 当第二个参数为负值时，这三个方法的行为各不相同。slice()方法会把第二个参数转换为7，这相当于调用了slice(3,7),因此返回"lo w"。substring()方法会把第二个参数转换为0，时调用变成了substring(3,0)，而由于这个方法会将较小的数作为开始位置，将较大的数作为结束位置，因此最终相当于调用substring(0,3)。substr()也会将第二个参数转换为0，这也就意味着返回包含零个字符串，也就是一个空字符串。
+
+- 字符串位置方法
+
+> 有两个可以从字符串中查找字符串的方法：indexOf()和lastIndexOf()。这两个方法都是从一个字符串中搜索给定的子字符串，然后返回字符串的位置(如果没有找到改字符串，则返回-1)。这两个方法的区别在于：indexOf()方法从字符串的开头向后搜索子字符串，而lastIndexOf()方法是从字符串的末尾向前搜索子字符串。
+
+```javascript
+    var value = "hello world";
+    console.log(value.indexOf("o"));    //4
+    console.log(value.lastIndexOf("o"));    //7
+```
+
+> 这两个方法都可以接收可选的第二个参数，表示从字符串中的哪个位置开始搜索。换句话说，indexOf()会从该参数指定的位置向后搜索，忽略该位置之前的所有字符；而lastIndexOf()则会从指定的位置向前搜索，忽然该位置之后的所有字符。
+
+```javascript
+    var value = "hello world";
+    console.log(value.indexOf("o",6));  //7
+    console.log(value.lastIndexOf("o",6));//4
+```
 
