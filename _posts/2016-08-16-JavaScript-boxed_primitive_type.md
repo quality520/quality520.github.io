@@ -302,4 +302,24 @@ tags: [javaScript, No.10, 基本包装类型, blogs]
     console.log(value,trimValue);   //    hello world!    ,hello world!
 ```
 
+> 由于trim()返回的是字符串的副本，所以原始字符串中的前置与后缀空格会保持不变。
+>FF3.5+,safari5+和chrome8+还支持非标准的trimLeft()和trimRight()方法，分别用于删除字符串开头和末尾的空格。
 
+- 字符串大小写转换方法
+
+> toLowerCase()、toLocaleLowerCase()、toUpperCase()和toLocaleUpperCase().
+> 其中toLowerCase()和toUpperCase()是两个经典的方法
+
+```javascript
+    var stringValue = "hello world";
+    console.log(stringValue.toLocaleUpperCase()); //"HELLO WORLD"
+    console.log(stringValue.toUpperCase()); //"HELLO WORLD"
+    console.log(stringValue.toLocaleLowerCase()); //"hello world"
+    console.log(stringValue.toLowerCase()); //"hello world"
+```
+
+- 字符串的模式匹配方法
+
+> String类型定义了几个用于在字符串中匹配模式的方法。
+
+1. match()
