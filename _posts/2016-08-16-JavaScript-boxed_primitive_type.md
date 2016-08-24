@@ -293,3 +293,13 @@ tags: [javaScript, No.10, 基本包装类型, blogs]
 > 这个例子通过不断增加indexOf()方法开始查找的位置，遍历一个长字符串。在循环之外，首先找到了"e"在字符串中的初始位置；而进入循环后，则每次都给indexOf()传递上一次的位置加1.这样，就确保了每次新搜索都从上一次找到的字符串的后面开始。每次搜索返回的位置依次被保存在数组positions中。
 
 - trim()方法
+
+> ECMAScript5为所有字符串定义了trim()方法。这个方法会创建一个字符串的副本，删除前置与后缀的所有空格，然后返回结果。
+
+```javascript
+    var value = "    hello world!    ";
+    var trimValue = value.trim();
+    console.log(value,trimValue);   //    hello world!    ,hello world!
+```
+
+
