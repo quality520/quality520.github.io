@@ -323,3 +323,41 @@ tags: [javaScript, No.10, 基本包装类型, blogs]
 > String类型定义了几个用于在字符串中匹配模式的方法。
 
 1. match()
+
+> 字符串上调用这个方法，本质上与调用RegExp的exec()方法相同。match()方法只接受一个参数，要么是一个正则表达式，要么是一个RegExp对象。
+ 
+```javascript
+    var text = "cat, bat, sat, fat";
+    var pattern = /.at/;
+
+    //与pattern.exec(text)相同
+    var matches = text.match(pattern);
+    console.log(matches);   //["cat", index: 0, input: "cat, bat, sat, fat"]
+    console.log(matches.index); //0
+    console.log(matches[0]);    //cat
+    console.log(pattern.lastIndex); //0
+```
+ 
+2. search()
+
+> search()方法的唯一参数与match()方法的参数相同：由字符串或RegExp对象指定的一个正则表达式。search()方法返回字符串中第一个匹配项的索引；如果没有找到匹配项，则返回-1.而且，search()方法始终是从字符串开头向后查找模式
+
+```javascript
+    var text = "cat, bat, sat, fat";
+    var pos = text.search(/at/);
+    console.log(pos); 
+```
+
+3. replace()
+
+> 为了简化替换子字符串的操作，ECMAScript提供了replace()方法。这个方法接受两个参数：第一个采纳数可以是一个RegExp对象或者一个字符串(这个字符串不会被转换成正则表达式)，第二个参数可以是一个字符串或者一个函数。如果第一个参数是字符串，那么只会替换第一个子字符串。要想替换所有子字符串，唯一的办法就是提供一个指定全局(g)标志的正则表达式。
+
+```javascript
+    var text = "cat, bat, sat, fat";
+    var result = text.replace("at", "ond");
+    alert(result); //"cond, bat, sat, fat"
+    result = text.replace(/at/g, "ond");
+    alert(result); //"cond, bond, sond, fond"
+```
+
+
