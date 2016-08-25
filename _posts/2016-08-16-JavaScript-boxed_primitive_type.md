@@ -360,4 +360,5 @@ tags: [javaScript, No.10, 基本包装类型, blogs]
     alert(result); //"cond, bond, sond, fond"
 ```
 
+> 如果第二个参数是字符串，那么还可以使用一些特殊的字符序列，将正则表达式操作得到的值插入到结果字符串中。
 
