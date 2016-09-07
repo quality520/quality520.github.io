@@ -322,7 +322,7 @@ tags: [javaScript, No.10, 基本包装类型, blogs]
 
 > String类型定义了几个用于在字符串中匹配模式的方法。
 
-1. match()
+- match()
 
 > 字符串上调用这个方法，本质上与调用RegExp的exec()方法相同。match()方法只接受一个参数，要么是一个正则表达式，要么是一个RegExp对象。
  
@@ -338,7 +338,7 @@ tags: [javaScript, No.10, 基本包装类型, blogs]
     console.log(pattern.lastIndex); //0
 ```
  
-2. search()
+- search()
 
 > search()方法的唯一参数与match()方法的参数相同：由字符串或RegExp对象指定的一个正则表达式。search()方法返回字符串中第一个匹配项的索引；如果没有找到匹配项，则返回-1.而且，search()方法始终是从字符串开头向后查找模式
 
@@ -348,7 +348,7 @@ tags: [javaScript, No.10, 基本包装类型, blogs]
     console.log(pos); 
 ```
 
-3. replace()
+- replace()
 
 > 为了简化替换子字符串的操作，ECMAScript提供了replace()方法。这个方法接受两个参数：第一个采纳数可以是一个RegExp对象或者一个字符串(这个字符串不会被转换成正则表达式)，第二个参数可以是一个字符串或者一个函数。如果第一个参数是字符串，那么只会替换第一个子字符串。要想替换所有子字符串，唯一的办法就是提供一个指定全局(g)标志的正则表达式。
 
@@ -390,5 +390,69 @@ tags: [javaScript, No.10, 基本包装类型, blogs]
 二个参数可以实现更加精细的替换操作.
 
 ```javascript
-    
+    function htmlEscape(text){
+      return text.replace(/[<>"&]/g,function(match, pos, originalText){
+        switch(match){
+          case "<":
+              return "&lt;";
+          case ">":
+              return "&gt;";
+          case "&":
+              return "&amp;";
+          case "\"":
+              return "&quot;";
+        }
+      })
+    }
+    console.log(htmlEscape("<p class=\"greeting\">Hello world!</p>"));
+    //&lt;p class=&quot;greeting&quot;&gt;Hello world!&lt;/p&gt;
 ```
+
+- split()
+
+> split()，这个方法可以基于指定的分隔符将一个字符串分割成多个字符串，并将结果放在一个数组中。分隔符可以是字符串，也可以试试一个RegExp对象（这个方法不会将字符串看成正则表达式）。split()方法可以接受可选的第二个参数，用于指定数组的大小，以便确保返回的数组不会超过既定大小。
+
+```javascript
+    var colorText = "red,blue,green,yellow";
+    var colors1 = colorText.split(",");  //=>["red","blue","green","yellow"];
+    var colors2 = colorText.split(",", 2);  //=>["red","blue"];
+    var colors3 = colorText.split(/[^\,]+/);  //=>["", ",", ",", ",", ""];
+    //[^\,]表示任何非,(逗号)的字符，+表示一个或者多个
+```
+
+- localeCompare()方法
+
+> localeCompare(),这个方法比较两个字符串，并返回下列值中的一个： 
+
+- 如果字符串在字母表中应该排在字符串参数之前，则返回一个负数（大多数情况下是 -1 ，具体的值要视实现而定） ；
+- 如果字符串等于字符串参数，则返回0
+- 如果字符串在字母表中应该排在字符串参数之后，则返回一个整数(大多数情况下是1，具体值同样要视实现而定)
+
+```javascript
+    var stringValue = "yellow";
+    console.log(stringValue.localeCompare("brick"));    //=> 1
+    console.log(stringValue.localeCompare("yellow"));    //=> 0
+    console.log(stringValue.localeCompare("zoo"));    //=> -1
+```
+
+> localeCompare()返回的数值取决于实现
+
+```javascript
+    var stringValue = "yellow";
+    function determineOrder(value){
+        var result = stringValue.localeCompare(value);
+        if (result < 0 ){
+            console.log("The string '"+ stringValue +"' comes before the string '" + value + "'.")
+        } else if (result > 0){
+            console.log("The string '"+ stringValue +"' comes after the string '" + value + "'.");
+        } else {
+            console.log("The string '"+ stringValue "' is equal to the string '" + value + "'.");
+        }
+    }
+
+    determineOrder("green");
+    determineOrder("yellow");
+    determineOrder("zoo");
+```
+
+
