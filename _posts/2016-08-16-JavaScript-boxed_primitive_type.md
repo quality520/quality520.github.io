@@ -442,11 +442,11 @@ tags: [javaScript, No.10, 基本包装类型, blogs]
     function determineOrder(value){
         var result = stringValue.localeCompare(value);
         if (result < 0 ){
-            console.log("The string '"+ stringValue +"' comes before the string '" + value + "'.")
+            console.log("The string '"+ stringValue +"' comes before the string '" + value + "'.");
         } else if (result > 0){
-            console.log("The string '"+ stringValue +"' comes after the string '" + value + "'.");
+            console.log("The string '"+ stringValue +"' comes after the string'" + value + "'.");
         } else {
-            console.log("The string '"+ stringValue "' is equal to the string '" + value + "'.");
+            console.log("The string '"+ stringValue +"' is equal to the string '" + value + "'.");
         }
     }
 
@@ -454,5 +454,24 @@ tags: [javaScript, No.10, 基本包装类型, blogs]
     determineOrder("yellow");
     determineOrder("zoo");
 ```
+
+> localeCompare()方法比较与众不同的地方，就是实现所支持的地区(国家和语言)决定这个方法的行为。
+
+- fromCharCode()方法
+
+> fromCharCode()方法的任务是接收一或多个字符编码，然后将他们转换成一个字符串。从本质上看，这个方法与实例方法charCodeAt()执行的是相反的操作。
+
+```javascript
+    String.fromCharCode(104, 101, 108, 108, 111); //=>"hello"
+```
+
+#### Global对象
+
+> Global(全局)对象可以说是ECMAScript中最特别的一个对象了，因为不管你从什么角度上看，这个对象是不存在的。ECMAScript中的Global对象不属于任何其他对象的属性和方法，最终都是他的属性和方法。事实上，没有全局变量和全局函数；所有在全局作用域中定义的属性和函数，都是Global对象的属性。isNaN()、isFinite()、parseInt()以及parseFloat()，实际上全都是Global对象的方法。除此之外，Global对象还包括其他一些方法
+
+- URI 编码方法
+
+> Global对象的encodeURI()和encodeURIComponent()方法可以对URI()
+
 
 
