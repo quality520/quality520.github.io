@@ -471,7 +471,27 @@ tags: [javaScript, No.10, 基本包装类型, blogs]
 
 - URI 编码方法
 
-> Global对象的encodeURI()和encodeURIComponent()方法可以对URI()
+> Global对象的encodeURI()和encodeURIComponent()方法可以对URI(Uniform Resource Identifiers,通用资源标识符)进行编码，以便发送给浏览器。有效的URI中不能包含某些字符，例如：空格。而这两个URI编码方法就可以对URI进行编码，他们用特殊的URF-8编码替换所有无效的字符，从而让浏览器能够接受和理解。
+
+> encodeURI()主要用于这个URI(例如：http://www.wrox.com/illegal value.htm）)，而encodeURIComponent()主要用于对URI中的某一段(例如前面的URI中的eillegal value.htm)进行编码。它们的主要区别在于，encodeURI()不会对本身属于URI的特殊字符进行编码，例如冒号、正斜杠、问好和井号；而encodeURIComponent()则会对它发现的任何非标准字符进行编码。
+
+```javascript
+    var uri = "https://segmentfault.com/q/1010000002756695 index.html";
+    console.log(encodeURI(uri));
+    //=>"https://segmentfault.com/q/1010000002756695%20index.html"
+    console.log(encodeURIComponent(uri));
+    //=>"https%3A%2F%2Fsegmentfault.com%2Fq%2F1010000002756695%20index.html"
+```
+
+> 使用encodeURI()编码后的结果是除了空格之外的其他字符都原封不动，只有空格被替换成了"%20".
+> 而encodeURIComponent()方法则会使用对应的编码替换所有非字母数字字符。这也正是可以对整个URI使用encodeURI()，而只能对附加在现有URI后面的字符串使用encodeURIComponent()的原因所在。
+
+
+> 与encodeURI()和enCodeURIComponent()方法对应的两个方法分别是decodeURI()和decodeURIComponent()。
+
+- eval()方法
+
+> 
 
 
 
