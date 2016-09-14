@@ -491,7 +491,76 @@ tags: [javaScript, No.10, 基本包装类型, blogs]
 
 - eval()方法
 
-> 
+> eval()方法就像一个完整的ECMAScript解析器，它只接受一个参数，即要执行的ECMAScript(或javaScript)字符串。
 
+```javascript
+    evla("alert('hi')");
+```
 
+> 这行代码的作用等价于下面的
 
+```javascript
+    alert("hi");
+```
+
+> 当解析器发现代码中调用eval()方法时，它会将传入的参数当做实际的ECMAScript语句来解析，然后把执行结果插入到原位置。通过eval()执行的代码被认为是包含该次调用的执行环境的一部分，因此被执行的代码具有与该执行环境相同的作用域链。这意味着通过eval()执行的代码可以引用在包含环境中定义的变量。
+
+```javascript
+    var msg = "hello world";
+    eval("alert(msg)");//=>"hello world"
+```
+
+> 可见，变量msg时在eval()调用的环境之外定义的，但其中调用alert()仍然能够显示"hello world"。这是因为上面第二行代码最终被替换成了一行真正的代码，同样的，我们也可以在eval()调用中定义一个函数，然后再在该调用的外部代码中引用这个函数：
+
+```javascript
+    eval("function sayHi(){alert('hi')}");
+    sayHi(); //=> "hi"
+```
+
+> 函数sayHi()时在eval()内部定义的，但由于对eval()的调用最终会被替换成定义函数的实际代码，因此可以在下一行调用sayHi()。对于变量也一样：
+
+```javascript
+    eval("var msg = 'hello world!'");
+    alert(msg); //=>"hello world!"
+```
+
+> 在eval()中创建的任何变量或函数都不会被提升，因为在解析代码的时候，他们被包含在一个字符串中；它们只在eval()执行的时候创建。
+
+```javascript
+    sayHello();
+    eval("function sayHello(){alert('hello')}");
+    //=>报错“Uncaught ReferenceError: sayHello is not defined(…)”
+```
+
+> 严格模式下，在外部访问不到eval()中创建的任何变量或函数，同样，严格模式下，为eval()赋值也会导致错误：
+
+```javascript
+    "use strict"
+    eval("var msg = 'hello world!'");
+    alert(msg); //=>报错“Uncaught ReferenceError: msg is not defined(…)”
+```
+
+```javascript
+    "use strict"
+    eval = "hi"; //=>报错“Uncaught SyntaxError: Unexpected eval or arguments in strict mode”
+```
+
+> tips：能够解释代码字符串的能力非常强大，但也非常危险。因此在使用eval()时必须极为谨慎，特别是在用它执行用户输入数据的情况下。否则，可能会有恶意用户输入威胁你的站点或应用程序安全的代码(即所谓的**代码注入**)。
+
+- Global对象属性
+
+> Global对象还包含一些属性，其中一部分属性之前已经介绍过，例如，特殊的值undefined、NaN以及Infinity都是Global对象的属性。此外，所有原生引用类型的构造函数，像Object和Function，也都是Global对象的属性。
+
+属性   ---->  说明
+undefined      特殊值undefined
+NaN            特殊值NaN
+Infinity       特殊值Infinity
+Object         构造函数Object
+Array          构造函数Array
+Function       构造函数Function
+Boolean        构造函数Boolean
+String         构造函数String
+Number         构造函数Number
+Date           构造函数Date
+RegExp         构造函数RegExp
+Error          
