@@ -563,4 +563,69 @@ String         构造函数String
 Number         构造函数Number
 Date           构造函数Date
 RegExp         构造函数RegExp
-Error          
+Error          构造函数Error
+EvalError      构造函数EvalError
+RangeError     构造函数RangeError
+ReferenceError 构造函数ReferenceError
+SyntaxError    构造函数SyntaxError
+TypeError      构造函数TypeError
+URIError       构造函数URIError
+
+- window对象
+
+> ECMAScript虽然没有之处如何直接访问Global对象，但Web浏览器都是讲这个全局对象作为window对象的一部分加以实现的。因此，在全局作用域中声明的所有变量和函数，就都成为了window对象的属性：
+
+```javascript
+    var color = 'red';
+    function sayColor(){
+      alert(window.color);
+    }
+    window.sayColor();  //=>"red"
+```
+
+>tips:javascript中的window对象除了扮演ECMAScript规定的Global对象的角色外，还承担了很多的任务。浏览器对象模型的window对象。
+
+> 另一种取的Global对象的方法是使用以下代码：
+
+```javascript
+    var global = function(){
+        return this;    
+    }();
+```
+
+> 以上代码创建了一个立即调用的函数表达式，返回this值。如前所述，在没有给函数明确指定this值的情况下(无论是通过将函数添加为对象的方法，还是通过调用call()或apply())，this值等于Global对象。而像这样通过简单地返回this来取得Global对象，在任何执行环境下都是可以行的。
+
+- Math对象
+
+  1. Math对象的属性
+  
+> Math对象包含的属性大都是数学计算中可能会用到的一些特殊值。
+
+```javascript
+    Math.E; //自然对数的底数，即常量e的值
+    Math.LN10; //10的自然对数
+    Math.LN2;   //2的自然对数
+    Math.LOG2E;  //以2为底e的对数
+    Math.LOG10E;  //以10为底e的对数
+    Math.PI;    //π的值
+    Math.SQRT1_2;  //1/2的平方根(即2的平方根的倒数)
+    Math.SQRT2; //2的平方根
+```
+
+ 2. min()和max()方法
+
+> min()和max()方法用于确定一组数值中的最小值和最大值。这两方法都可以接收任意多个数值参数。
+
+```javascript
+    var max = Math.max(3, 54, 32, 16); //=>54
+    var min = Math.min(3, 54, 32, 16); //=>3
+```
+
+> 要找到数组中的最大或最小值，可以使用apply()方法。
+
+```javascript
+    var arr = [1, 54, 32, 100, 99, 3];
+    var max = Math.max.apply(Math, arr);//=>100
+```
+
+> 这个技巧的关键是吧Math对象作为apply()的第一个参数，从而正确地设置this值，然后，可以讲任何数组作为第二个参数。
