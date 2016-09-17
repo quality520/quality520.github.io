@@ -629,3 +629,20 @@ URIError       构造函数URIError
 ```
 
 > 这个技巧的关键是吧Math对象作为apply()的第一个参数，从而正确地设置this值，然后，可以讲任何数组作为第二个参数。
+
+ 3. 舍入方法
+
+> Math.ceil()、Math.floor()和Math.round()
+> Math.ceil():执行向上舍入，即它总是将数值向上舍入为最接近的整数；
+> Math.floor():执行向下舍入，即它总是将数值向下舍入为最接近的整数；
+> Math.round():执行标准舍入，即它总是将数值四舍五入为最接近的整数
+
+```javascript
+    Math.ceil(25.9); //26
+    Math.ceil(25.5); //26
+    Math.ceil(25.1); //26
+
+    Math.floor(25.9); //25
+    Math.floor(25.5); //25
+    Math.floor(25.1); //25
+```
