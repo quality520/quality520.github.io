@@ -645,4 +645,24 @@ URIError       构造函数URIError
     Math.floor(25.9); //25
     Math.floor(25.5); //25
     Math.floor(25.1); //25
+
+    Math.round(25.9); //26
+    Math.round(25.5); //26
+    Math.round(25.1); //25
 ```
+
+ 4. random()方法
+
+> Math.random()方法返回大于等于0小于1的随机数，对于某些站点来说，这个方法非常实用，因为可以利用它来随机显示一些名人名言和新闻事件。套用下面的公式，就可以利用Math.random()从某个整数范围内随机选择一个值。
+
+```javascript
+    值 = Math.floor(Math.random() * 可能值的总数 + 第一个可能的值)
+```
+
+> 公式中用到了 Math.floor() 方法，这是因为 Math.random()总返回一个小数值。而用这个小数值乘以一个整数，然后再加上一个整数，最终结果仍然还是一个小数。举例来说，如果你想选择一个 1到 10 之间的数值，可以像下面这样编写代码：
+
+```javascript
+    var num = Math.floor(Math.random() * 10 * 1);
+```
+
+
